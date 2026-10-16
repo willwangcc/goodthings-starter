@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "profile.schema.json",
+  "title": "Good Things Participant Profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "user_id", "display_name", "summary", "facts", "intent", "constraints", "eligibility_facts", "preferences", "generation", "updated_at"],
+  "properties": {
+    "schema_version": { "const": "participant-profile.v1" },
+    "user_id": { "type": "string", "minLength": 1 },
+    "display_name": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string" },
+    "facts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["birth_year", "location", "languages", "roles", "skills", "education", "current_projects"],
+      "properties": {
+        "birth_year": { "type": ["integer", "null"], "minimum": 1900, "maximum": 2100 },
+        "location": { "type": "object", "additionalProperties": false, "required": ["city", "country"], "properties": { "city": { "type": ["string", "null"] }, "country": { "type": ["string", "null"] } } },
+        "languages": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "roles": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "skills": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "education": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["level", "field", "status", "note"], "properties": { "level": { "type": "string" }, "field": { "type": ["string", "null"] }, "status": { "type": "string" }, "note": { "type": ["string", "null"] } } } },
+        "current_projects": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "intent": { "type": "object", "additionalProperties": false, "required": ["exploration_stage", "primary_goals", "interests", "desired_outcomes", "time_horizon"], "properties": { "exploration_stage": { "type": ["string", "null"] }, "primary_goals": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }, "interests": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }, "desired_outcomes": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }, "time_horizon": { "type": ["string", "null"] } } },
+    "constraints": { "type": "object", "additionalProperties": false, "required": ["geographies", "weekly_time_budget_hours", "max_application_effort", "travel_ok"], "properties": { "geographies": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }, "weekly_time_budget_hours": { "type": ["number", "null"], "minimum": 0 }, "max_application_effort": { "type": ["string", "null"] }, "travel_ok": { "type": ["boolean", "null"] } } },
+    "eligibility_facts": { "type": "object", "additionalProperties": false, "required": ["student_status", "employment_status", "company_status", "other"], "properties": { "student_status": { "type": "string" }, "employment_status": { "type": "string" }, "company_status": { "type": "string" }, "other": { "type": "array", "items": { "type": "string" }, "uniqueItems": true } } },
+    "preferences": { "type": "object", "additionalProperties": false, "required": ["opportunity_kinds", "avoid"], "properties": { "opportunity_kinds": { "type": "array", "items": { "enum": ["grant", "program", "event", "job", "perk", "community", "other"] }, "uniqueItems": true }, "avoid": { "type": "array", "items": { "type": "string" }, "uniqueItems": true } } },
+    "generation": { "type": "object", "additionalProperties": false, "required": ["target_count", "exploration_ratio"], "properties": { "target_count": { "type": "integer", "minimum": 1, "maximum": 100 }, "exploration_ratio": { "type": "number", "minimum": 0, "maximum": 1 } } },
+    "updated_at": { "type": "string", "format": "date" }
+  }
+}

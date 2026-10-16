@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "feed.schema.json",
+  "title": "Good Things Opportunity Feed v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "user_id", "source_profile_updated_at", "items"],
+  "properties": {
+    "schema_version": { "const": "opportunity-feed.v1" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "user_id": { "type": "string", "minLength": 1 },
+    "source_profile_updated_at": { "type": "string", "format": "date" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["opportunity", "match"],
+        "properties": {
+          "opportunity": { "$ref": "opportunity.schema.json" },
+          "match": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["score", "why_you", "why_now", "next_step"],
+            "properties": {
+              "score": { "type": "number", "minimum": 0, "maximum": 1 },
+              "why_you": { "type": "string", "minLength": 1 },
+              "why_now": { "type": "string", "minLength": 1 },
+              "next_step": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  }
+}

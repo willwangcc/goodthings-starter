@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "interaction.schema.json",
+  "title": "Good Things Interaction Batch v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "batch_id", "user_id", "session_id", "started_at", "completed_at", "feed_generated_at", "events"],
+  "properties": {
+    "schema_version": { "const": "interaction-batch.v1" },
+    "batch_id": { "type": "string", "minLength": 1 },
+    "user_id": { "type": "string", "minLength": 1 },
+    "session_id": { "type": "string", "minLength": 1 },
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "feed_generated_at": { "type": "string", "format": "date-time" },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["at", "opportunity_id", "action"],
+        "properties": {
+          "at": { "type": "string", "format": "date-time" },
+          "opportunity_id": { "type": "string", "minLength": 1 },
+          "action": { "enum": ["left", "right", "detail", "source"] },
+          "dwell_ms": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}
