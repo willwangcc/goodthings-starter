@@ -1,0 +1,43 @@
+{
+  "schema_version": "participant-profile.v1",
+  "user_id": "YOUR_USER_ID",
+  "display_name": "Your Name",
+  "summary": "New Good Things installation. Fill only facts and goals supported by real user evidence.",
+  "facts": {
+    "birth_year": null,
+    "location": { "city": null, "country": null },
+    "languages": [],
+    "roles": [],
+    "skills": [],
+    "education": [],
+    "current_projects": []
+  },
+  "intent": {
+    "exploration_stage": null,
+    "primary_goals": [],
+    "interests": [],
+    "desired_outcomes": [],
+    "time_horizon": null
+  },
+  "constraints": {
+    "geographies": [],
+    "weekly_time_budget_hours": null,
+    "max_application_effort": null,
+    "travel_ok": null
+  },
+  "eligibility_facts": {
+    "student_status": "unknown",
+    "employment_status": "unknown",
+    "company_status": "unknown",
+    "other": []
+  },
+  "preferences": {
+    "opportunity_kinds": [],
+    "avoid": []
+  },
+  "generation": {
+    "target_count": 10,
+    "exploration_ratio": 0.35
+  },
+  "updated_at": "1970-01-01"
+}

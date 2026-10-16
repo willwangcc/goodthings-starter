@@ -1,0 +1,31 @@
+{
+  "schema_version": "opportunity-feed.v1",
+  "generated_at": "1970-01-01T00:00:00Z",
+  "user_id": "YOUR_USER_ID",
+  "source_profile_updated_at": "1970-01-01",
+  "items": [
+    {
+      "opportunity": {
+        "schema_version": "opportunity.v1",
+        "id": "example-opportunity",
+        "identity": { "kind": "example", "title": "Your first Good Thing will appear here", "organizer": "Good Things" },
+        "summary": { "short": "Run the scheduled task to replace this example with verified opportunities for this person.", "long": "This is placeholder data, not a real opportunity." },
+        "lifecycle": { "status": "unknown", "opens_at": null, "deadline_at": null, "starts_at": null, "ends_at": null },
+        "geography": { "mode": "unknown", "locations": [] },
+        "benefits": [{ "type": "example", "amount": null, "min_amount": null, "max_amount": null, "currency": null, "coverage": null, "note": "Personalized, verified opportunities" }],
+        "eligibility": { "criteria": [] },
+        "participation": { "duration": null, "minimum_commitment": null, "notes": [] },
+        "application": { "method": "unknown", "submission_url": null, "account_requirement": null, "languages": [], "submission_limit": null, "human_authorship_required": null, "final_confirmation_required": null, "requirements": [] },
+        "taxonomy": { "topics": ["example"], "audiences": [], "tags": ["placeholder"] },
+        "provenance": { "primary_source_url": "https://example.com/", "publisher": "Example", "retrieved_at": "1970-01-01T00:00:00Z", "verified_at": null, "verification_status": "unverified", "notes": ["Placeholder only"] },
+        "updated_at": "1970-01-01T00:00:00Z"
+      },
+      "match": {
+        "score": 0,
+        "why_you": "This instance has not been personalized yet.",
+        "why_now": "Install the Scheduled Task.",
+        "next_step": "Follow SETUP.md"
+      }
+    }
+  ]
+}
