@@ -89,3 +89,9 @@ Return: instance URL, protected app URL (only if verified), task schedule and ta
 - No OAuth/Token automation unless a user-authorized tool actually supports it.
 - Do not update everyone else's previously installed instances automatically.
 
+
+## Stage 7 — Optional Installation Learning Loop
+
+At COMPLETE, PARTIAL or BLOCKED, offer (do not silently run/publish) a post-install review using skills/post-install-review/SKILL.md and docs/installation-report.md.
+Capture only verified stages, measured human interventions and actual friction. With consent, save a schema-validated installation report to the participant's PRIVATE instance; never to the public template.
+Search open and closed issues and present any NEW sanitized public Issue in full for explicit approval before publication. Do not file public security vulnerabilities. This review is optional and is never a blocker for using Good Things.

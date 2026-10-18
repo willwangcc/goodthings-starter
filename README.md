@@ -57,6 +57,18 @@ prompts/scheduled-task.md         Recurring task payload
 docs/installation-test.md         Clean-room acceptance checklist
 ~~~
 
+## Improve the installer after every install
+
+A successful, partial or blocked installation can produce an **Installation Report**. A private report stays with the participant in their private instance; an actionable, *sanitized* friction can become a public GitHub Issue **only after the participant reviews and approves its exact text**.
+
+- [Post-install Review prompt](prompts/post-install-review.md) — use in the participant's ChatGPT after installation
+- [Post-install Review Skill](skills/post-install-review/SKILL.md) — evidence, duplicate-issue search, privacy/consent
+- [Installation Learning Loop](docs/installation-report.md) — reporting contract and severity/triage
+- [Installation Report schema](schemas/installation-report.schema.json) — versioned private artifact
+- [File a sanitized installation friction](https://github.com/willwangcc/goodthings-starter/issues/new/choose) — check for duplicates first
+
+The public source repository contains a synthetic example only, not real participants' reports.
+
 ## Security by default
 Without GOODTHINGS_ACCESS_PASSWORD and GOODTHINGS_SESSION_SECRET, personal cards remain inaccessible and feedback writes are denied. A private fine-grained GitHub token is required for write-back. Never commit secrets. See [SETUP.md](SETUP.md).
 
@@ -82,4 +94,3 @@ The app has an empty state until you generate a real dated feed. Example fixture
 - The template creates independent private instances; it does NOT automatically upgrade them.
 
 Related R&D: goodthings-opportunity (schema), goodthings-prototype (UX), goodthings-starter (per-user installable runtime).
-

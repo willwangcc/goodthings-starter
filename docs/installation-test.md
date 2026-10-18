@@ -40,9 +40,10 @@ For T09 do NOT revoke the owner's real personal token during a live production s
 - Built-in password protection is fail-closed but has no globally coordinated rate limiting; enable provider-side protection for internet-facing apps.
 - New instances do not automatically inherit later template updates.
 
-## Failure log
-Capture each failure as (step, observed error, user intervention, minutes lost, proposed smallest fix, GitHub issue URL). Make one code change only when a real installation has demonstrated the need.
+## Failure log and review
+Capture each failure as (stage, observed error, evidence strength, user intervention, minutes lost if measured, proposed smallest fix, known public Issue URL). Use `schemas/installation-report.schema.json` for an optional private report and `prompts/post-install-review.md` to review the installation. See `docs/installation-report.md`.
+
+Do not publish real participant reports, private repository paths, profile details, tokens or sensitive logs in the public starter. A PUBLIC Issue needs a generic reproducible problem, open/closed Issue deduplication and the participant's explicit approval of its exact redacted text. A fix should gain a regression test.
 
 ## Release gate
 No "one-click install" claim until T01-T08 and T13 pass in a clean-room instance, T10-T12 are verifiably working with the user's actual Scheduled Task integration, and the user can recover from T09.
-

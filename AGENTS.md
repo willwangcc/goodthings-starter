@@ -56,3 +56,8 @@ Treat swipe/detail/source behavior as evidence, not truth. Right-swipe is positi
 ## Product rule
 
 > No installer feature without a failing real installation.
+
+## Installation Learning Loop
+
+After each installation, optionally run skills/post-install-review/SKILL.md using docs/installation-report.md and schemas/installation-report.schema.json.
+The private report is distinct from the public bug report. Never save a real user's installation report in this public source repo. Search open AND closed Issues for duplicates and require explicit participant approval for each newly published sanitized Issue. Security vulnerabilities require private disclosure, not public Issues.

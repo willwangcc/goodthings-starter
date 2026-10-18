@@ -1,0 +1,45 @@
+{
+  "schema_version": "installation-report.v1",
+  "report_id": "install-19700101-EXAMPLE",
+  "recorded_on": "1970-01-01",
+  "installation_result": "PARTIAL",
+  "last_verified_state": "SCHEDULE_READY",
+  "starter_revision": null,
+  "session": {
+    "started_at": null,
+    "finished_at": null,
+    "chat_mode": "unknown",
+    "github_access": "unverified",
+    "vercel_access": "unverified",
+    "scheduled_task_access": "unverified"
+  },
+  "metrics": {
+    "elapsed_minutes": null,
+    "manual_interventions": null,
+    "custom_code_edits": null
+  },
+  "checks": [
+    {
+      "test_id": "T10",
+      "status": "NOT_TESTED",
+      "evidence": "Synthetic example; no real user's task was accessed."
+    }
+  ],
+  "frictions": [
+    {
+      "friction_id": "F01",
+      "stage": "SCHEDULE_READY",
+      "category": "scheduled_task",
+      "summary": "Example: scheduled GitHub write has not been verified",
+      "expected": "A real unattended task run writes a fresh feed.",
+      "observed": "There is no run evidence in this synthetic fixture.",
+      "reproduction_steps": [],
+      "recovery": null,
+      "minutes_lost": null,
+      "severity": "medium",
+      "status": "unverified",
+      "issue_url": null
+    }
+  ],
+  "public_issue_links": []
+}

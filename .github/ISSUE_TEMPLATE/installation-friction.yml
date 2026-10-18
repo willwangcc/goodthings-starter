@@ -1,0 +1,120 @@
+name: "Installation friction"
+description: "Report a reproducible Good Things installer problem (public, sanitized technical details only)."
+title: "[install] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for improving Good Things. This Issue will be **public**.
+        Do not include names, emails, personal profiles, private repository links,
+        secret tokens, session cookies, private deployment URLs, screenshots with
+        personal data, or raw private logs.
+        **Security vulnerabilities must be reported privately, not through this form.**
+        Please search existing open and closed Issues before filing.
+  - type: dropdown
+    id: stage
+    attributes:
+      label: "Installation stage"
+      description: "Where was the last confirmed successful transition?"
+      options:
+        - "START"
+        - "REPO_READY"
+        - "DATA_READY"
+        - "APP_READY"
+        - "FEEDBACK_READY"
+        - "SCHEDULE_READY"
+        - "COMPLETE"
+        - "REVIEW"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Friction category"
+      options:
+        - "permissions"
+        - "authentication"
+        - "deployment"
+        - "scheduled_task"
+        - "data"
+        - "interface"
+        - "documentation"
+        - "tool_unavailable"
+        - "other"
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: "Impact"
+      options:
+        - "Blocking: no reasonable workaround"
+        - "High: workaround requires significant manual help"
+        - "Medium: extra steps, setup time, or confusion"
+        - "Low: polish / documentation"
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: "Concise problem"
+      placeholder: "e.g. Installer fails to explain token's Contents permission"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+      description: "What should the installer or application have done?"
+      placeholder: "After authorizing a repo, the installer should verify write access."
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: "Observed behavior"
+      description: "Share only public, non-identifying symptoms. Label hypotheses as unverified."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "Generic reproduction steps"
+      description: "Use a disposable test instance and generic placeholders, not private URLs."
+      placeholder: |
+        1. Create a private instance from the public template
+        2. Start the installation prompt
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: recovery
+    attributes:
+      label: "Workaround or recovery"
+      description: "Optional; do not paste actual credentials or commands containing secrets."
+    validations:
+      required: false
+  - type: input
+    id: duplicate
+    attributes:
+      label: "Related or duplicate public Issue (optional)"
+      placeholder: "#123 or a public Good Things issue URL"
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: "Proposed acceptance test"
+      description: "How would we prove the fix works on a new, non-identifying installation?"
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: "Publication safety"
+      options:
+        - label: "I reviewed the entire Issue and removed private identifiers, credentials and personal data."
+          required: true
+        - label: "This does not contain sensitive security-vulnerability details."
+          required: true
+
