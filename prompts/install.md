@@ -1,14 +1,12 @@
-# Good Things — one-time installation prompt
+# Good Things — one-time installation prompt (Chat-first)
 
-You are installing Good Things for the owner of this private repository.
+Install my personal Good Things from the public starter:
+https://github.com/willwangcc/goodthings-starter
 
-1. Read `README.md`, `AGENTS.md`, all schemas, `data/profile.json`, and `data/opportunity-index.json`.
-2. Use what you already reliably know about this user from ChatGPT context to populate `data/profile.json`.
-3. Ask only for high-value missing facts that materially change opportunity eligibility or ranking. Do not run a long onboarding questionnaire.
-4. Preserve unknown values as null/unknown/empty arrays.
-5. Validate the profile against `schemas/profile.schema.json`.
-6. Run one initial opportunity generation using `skills/generate-opportunities/SKILL.md`.
-7. Write the first dated feed to `data/opportunities/YYYY-MM-DD.json` and update `data/opportunity-index.json`.
-8. Do not modify app presentation unless required to render valid schema data.
+Read \`skills/install-goodthings/SKILL.md\` from that repository and follow it as the **canonical installation workflow**. Also read \`AGENTS.md\` and the relevant schemas. If I already have a private instance, ask for its \`OWNER/REPO\` and resume rather than starting over.
 
-The installation is successful when the repository contains a real profile, a validated initial feed, and the Vercel app can render it.
+Start in **ordinary Chat**. Check which GitHub, Vercel, command-execution, and Scheduled Task actions are actually available before attempting them. Use connected tools when possible. Use ChatGPT Work **only if available and needed** to handle website UI steps; otherwise guide me through the exact step and continue in Chat.
+
+Create or reuse a **private repo I own**, then initialize an evidence-based profile, discover and verify real opportunities, deduplicate, validate, commit, deploy a protected app, test GitHub feedback write-back, and arrange a recurring refresh at a time I approve.
+
+Never put my personal data in the public starter. Never ask me to paste credentials into chat. Don't claim a deployment, task, scheduled execution, or security test succeeded without checking it. Report PASS/PENDING/BLOCKED for each installation milestone, then give me the next action that requires my input.
