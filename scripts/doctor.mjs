@@ -7,6 +7,7 @@ const required = [
   "schemas/opportunity.schema.json",
   "schemas/feed.schema.json",
   "schemas/interaction.schema.json",
+  "skills/install-goodthings/SKILL.md",
   "prompts/install.md",
   "prompts/scheduled-task.md"
 ];
