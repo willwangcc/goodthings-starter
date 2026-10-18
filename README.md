@@ -1,103 +1,85 @@
 # Good Things Starter
 
-A self-hosted personal opportunity radar powered by ChatGPT, GitHub, and Vercel.
+**Install once. Let it keep looking for good things for you.**
 
-> **Install once. Let it keep looking for good things for you.**
+Good Things is a personal opportunity radar: ChatGPT finds real opportunities, a private GitHub repo remembers your goals and choices, and a mobile-first web app lets you review a fresh deck.
 
-This repository is the installable Good Things instance: one private repo per person. ChatGPT discovers and refreshes opportunities on a schedule, GitHub is the durable personal data store, and the Vercel app is the swipeable interface.
+## Install from YOUR ChatGPT
 
-## Runtime
+**1. Copy the text in [One-Prompt Install](prompts/one-prompt-install.md) into ChatGPT.**
 
-```text
-ChatGPT Scheduled Task
+**2. Authorize your own GitHub and Vercel accounts when prompted.** The installer creates (or helps you create) a new **private** GitHub repository from this template. Do not fork or put your real profile in the public starter.
+
+**3. Complete provider-only secret configuration and choose a daily task schedule.** Finish by verifying cards, a feedback commit and a real scheduled refresh.
+
+The complete [installation guide](SETUP.md) and [installer skill](skills/install-goodthings/SKILL.md) cover tool limitations and manual fallbacks. This is an **assisted installation**, not yet a universal one-click OAuth flow.
+
+[Create a private Good Things instance](https://github.com/new?template_owner=willwangcc&template_name=goodthings-starter&visibility=private&name=my-goodthings) (works once the template owner enables GitHub Template repository).
+
+## Personal runtime
+
+~~~text
+Daily ChatGPT Scheduled Task
   read profile + prior opportunities + interactions
-  discover + verify + dedupe + rank
-  evolve profile conservatively
-  write today's opportunity feed
-             ↓
-       Private GitHub repo
-             ↓
-          Vercel app
-             ↓
-        swipe / detail
-             ↓
-       /api/feedback
-             ↓
- data/interactions/*.json
-             ↺
-```
+  verify + dedupe + rank real opportunities
+  write a dated opportunity feed to a private GitHub repo
+                ↓
+       Private GitHub instance
+                ↓
+          Vercel mobile app
+                ↓
+       Nope / Want / Detail
+                ↓
+    authenticated /api/feedback
+                ↓
+   immutable GitHub interaction batch
+                ↺
+~~~
 
-## What this repo owns
+No opportunity is invented. Unknown eligibility remains unknown. Profile evolution requires evidence. Real feedback is recorded, not treated as an immutable personality trait.
 
-- one person's evolving `data/profile.json`
-- durable dedupe memory in `data/opportunity-index.json`
-- generated opportunity feeds in `data/opportunities/`
-- swipe/detail/source events in `data/interactions/`
-- schemas for every durable JSON object
-- the Scheduled Task prompt + generation/evolution skills
-- a minimal mobile-first card app deployable to Vercel
+## Repository map
 
-## Install
+~~~text
+app/                             Protected mobile cards + login + feedback API
+lib/                             Server feed loader + authentication
+data/profile.json                Your editable user model (placeholder in template)
+data/opportunity-index.json       Canonical URL dedupe memory
+data/opportunities/               Dated real opportunity feeds
+data/interactions/                Immutable interaction batches
+schemas/                         Versioned JSON contracts
+skills/install-goodthings/        Installer playbook
+skills/generate-opportunities/    Discovery + verification + ranking
+skills/evolve-profile/            Evidence-aware personalization
+prompts/one-prompt-install.md     ChatGPT-facing one-message entry point
+prompts/install.md                Initial data generation
+prompts/scheduled-task.md         Recurring task payload
+docs/installation-test.md         Clean-room acceptance checklist
+~~~
 
-1. Create a **private repository from this template**.
-2. Follow [`SETUP.md`](SETUP.md).
-3. Connect the repo to Vercel.
-4. Connect GitHub in ChatGPT.
-5. Paste [`prompts/install.md`](prompts/install.md) once.
-6. Create a recurring ChatGPT Scheduled Task using [`prompts/scheduled-task.md`](prompts/scheduled-task.md).
+## Security by default
+Without GOODTHINGS_ACCESS_PASSWORD and GOODTHINGS_SESSION_SECRET, personal cards remain inaccessible and feedback writes are denied. A private fine-grained GitHub token is required for write-back. Never commit secrets. See [SETUP.md](SETUP.md).
 
-The first successful install is not “the app opens.” It is this full loop:
+## Developer quick start
 
-```text
-profile → generated feed → Vercel cards → swipe → GitHub interaction → next refresh improves
-```
-
-## Data layout
-
-```text
-data/
-  profile.json                  # current user model
-  opportunity-index.json        # dedupe memory
-  opportunities/                # dated generated feeds
-  interactions/                 # immutable feedback batches
-
-schemas/
-  profile.schema.json
-  opportunity.schema.json
-  feed.schema.json
-  interaction.schema.json
-
-skills/
-  generate-opportunities/SKILL.md
-  evolve-profile/SKILL.md
-
-prompts/
-  install.md
-  scheduled-task.md
-```
-
-## Laws
-
-1. **Opportunity is discovered, not invented.**
-2. **Primary-source facts beat polished copy.**
-3. **Unknown stays unknown.**
-4. **No duplicate canonical URL.**
-5. **Profile changes require evidence.**
-6. **Stable semantics, variable presentation.** Card UI may evolve; JSON contracts should change deliberately.
-7. **One real installation failure earns one installer improvement.** Do not automate imaginary pain.
-
-## Local
-
-```bash
+~~~sh
 npm install
 npm run validate
+npm test
+npm run typecheck
+npm run build
 npm run dev
-```
+~~~
 
-## Repository roles
+The app has an empty state until you generate a real dated feed. Example fixtures are never surfaced as genuine opportunities.
 
-- `goodthings-opportunity`: semantic/card-design R&D
-- `goodthings-prototype`: interaction R&D
-- `goodthings-starter`: the installable per-person runtime
+## Product discipline
 
-The starter should absorb only patterns proven useful by real installations.
+- Canonical opportunity facts and per-user matches remain separate.
+- No duplicate underlying opportunity edition.
+- Swipe activity may tune preferences, never silently rewrite stable identity.
+- No installer feature without evidence from a failing real installation.
+- The template creates independent private instances; it does NOT automatically upgrade them.
+
+Related R&D: goodthings-opportunity (schema), goodthings-prototype (UX), goodthings-starter (per-user installable runtime).
+
