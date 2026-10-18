@@ -11,12 +11,7 @@ export type FeedItem = {
     benefits: Array<{ type: string; amount?: number | null; currency?: string | null; note?: string | null }>;
     provenance: { primary_source_url: string; verification_status: string };
   };
-  match: {
-    score: number;
-    why_you: string;
-    why_now: string;
-    next_step: string;
-  };
+  match: { score: number; why_you: string; why_now: string; next_step: string };
 };
 
 export type OpportunityFeed = {
@@ -29,12 +24,11 @@ export type OpportunityFeed = {
 
 export function loadLatestFeed(): OpportunityFeed {
   const dir = path.join(process.cwd(), "data", "opportunities");
-  const files = fs
-    .readdirSync(dir)
-    .filter((name) => name.endsWith(".json"))
+  // Ignore example fixtures: a new installation must never show a fake opportunity.
+  const files = fs.readdirSync(dir)
+    .filter((name) => /^\d{4}-\d{2}-\d{2}\.json$/.test(name))
     .sort()
     .reverse();
-
   if (!files.length) {
     return {
       schema_version: "opportunity-feed.v1",
@@ -44,6 +38,5 @@ export function loadLatestFeed(): OpportunityFeed {
       items: [],
     };
   }
-
   return JSON.parse(fs.readFileSync(path.join(dir, files[0]), "utf8"));
 }
