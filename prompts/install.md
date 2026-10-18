@@ -3,7 +3,7 @@
 Install my personal Good Things from the public starter:
 https://github.com/willwangcc/goodthings-starter
 
-Read \`skills/install-goodthings/SKILL.md\` from that repository and follow it as the **canonical installation workflow**. Also read \`AGENTS.md\` and the relevant schemas. If I already have a private instance, ask for its \`OWNER/REPO\` and resume rather than starting over.
+Read `skills/install-goodthings/SKILL.md` from that repository and follow it as the **canonical installation workflow**. Also read `AGENTS.md` and the relevant schemas. If I already have a private instance, ask for its `OWNER/REPO` and resume rather than starting over.
 
 Start in **ordinary Chat**. Check which GitHub, Vercel, command-execution, and Scheduled Task actions are actually available before attempting them. Use connected tools when possible. Use ChatGPT Work **only if available and needed** to handle website UI steps; otherwise guide me through the exact step and continue in Chat.
 
