@@ -53,6 +53,11 @@ Set up a recurring ChatGPT Scheduled Task with prompts/scheduled-task.md and the
 ### F. Verify and record
 Use docs/installation-test.md to record each pass/fail, human intervention, time cost and follow-up fix.
 
+## G. Optional post-install learning
+
+Whether installation is COMPLETE, PARTIAL or BLOCKED, the participant may use prompts/post-install-review.md to review verified evidence and prepare a private installation-report.v1.
+Follow skills/post-install-review/SKILL.md and docs/installation-report.md. With permission, the report can be committed to the participant's PRIVATE instance under data/installation-reports/.
+Search existing public starter Issues before proposing a new one, show the entire sanitized Issue text for explicit approval, and never publish tokens, personal details, private instance URLs or vulnerability details. Reporting is optional and must not block using Good Things.
+
 ## Credentials and privacy
 Never put token/password/session secret into JSON, a git commit, an issue, a screenshot, or chat. The template is public; generated per-user repositories must remain private. Avoid transmitting a person's actual profile into public test fixtures.
-

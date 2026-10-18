@@ -13,3 +13,5 @@ Help me deploy the mobile card app on Vercel with access protection, and help se
 
 Run the full installation acceptance tests in docs/installation-test.md. Report what was actually verified and what still needs my action. Never call a checklist or pasted prompt a successful automation.
 
+
+After the install reaches COMPLETE, PARTIAL or BLOCKED, OFFER me an optional post-install review using prompts/post-install-review.md. Record only verified evidence, request permission before storing a report in MY private instance, and never create a public GitHub Issue without showing me its entire sanitized text and asking for my explicit approval.

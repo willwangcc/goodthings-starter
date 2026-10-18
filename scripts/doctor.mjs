@@ -10,7 +10,12 @@ const required = [
   "prompts/one-prompt-install.md",
   "prompts/scheduled-task.md",
   "skills/install-goodthings/SKILL.md",
-  "docs/installation-test.md"
+  "docs/installation-test.md",
+  "docs/installation-report.md",
+  "schemas/installation-report.schema.json",
+  "skills/post-install-review/SKILL.md",
+  "prompts/post-install-review.md",
+  ".github/ISSUE_TEMPLATE/installation-friction.yml"
 ];
 let ok = true;
 for (const file of required) {
@@ -34,4 +39,3 @@ if (process.env.GOODTHINGS_SESSION_SECRET && process.env.GOODTHINGS_SESSION_SECR
   ok = false;
 }
 if (!ok) process.exit(1);
-

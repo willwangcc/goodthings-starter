@@ -12,20 +12,34 @@ const opportunitySchema = readJson("schemas/opportunity.schema.json");
 const profileSchema = readJson("schemas/profile.schema.json");
 const feedSchema = readJson("schemas/feed.schema.json");
 const interactionSchema = readJson("schemas/interaction.schema.json");
+const installationReportSchema = readJson("schemas/installation-report.schema.json");
 
 ajv.addSchema(opportunitySchema, "opportunity.schema.json");
 const validateProfile = ajv.compile(profileSchema);
 const validateFeed = ajv.compile(feedSchema);
 const validateInteraction = ajv.compile(interactionSchema);
+const validateInstallationReport = ajv.compile(installationReportSchema);
 
 const checks = [];
 checks.push(["data/profile.json", validateProfile, readJson("data/profile.json")]);
+checks.push(["examples/installation-report.example.json", validateInstallationReport, readJson("examples/installation-report.example.json")]);
 
 for (const name of fs.readdirSync(path.join(root, "data/opportunities")).filter((n) => n.endsWith(".json"))) {
   checks.push([`data/opportunities/${name}`, validateFeed, readJson(`data/opportunities/${name}`)]);
 }
 for (const name of fs.readdirSync(path.join(root, "data/interactions")).filter((n) => n.endsWith(".json"))) {
   checks.push([`data/interactions/${name}`, validateInteraction, readJson(`data/interactions/${name}`)]);
+}
+
+const reportDir = path.join(root, "data/installation-reports");
+if (fs.existsSync(reportDir)) {
+  for (const name of fs.readdirSync(reportDir).filter((n) => n.endsWith(".json"))) {
+    checks.push([
+      `data/installation-reports/${name}`,
+      validateInstallationReport,
+      readJson(`data/installation-reports/${name}`)
+    ]);
+  }
 }
 
 let failed = false;
