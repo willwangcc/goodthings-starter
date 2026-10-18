@@ -5,7 +5,7 @@ One person = one private GitHub instance. The public starter is CODE and PLACEHO
 ## Fastest route: ChatGPT-assisted install
 
 1. Open prompts/one-prompt-install.md from the public source.
-2. Paste its content into your own ChatGPT, preferably in Work mode if it is available to you.
+2. Paste its content into **ordinary ChatGPT**. It uses connected tools when possible; Work is optional only for website-UI steps that the available tools cannot perform.
 3. Connect/authorize GitHub and Vercel when prompted. The installation assistant follows skills/install-goodthings/SKILL.md.
 4. Confirm permissions, private repository owner/name, preferred daily schedule, and environment secrets inside the provider UI.
 5. Finish the verification checklist in docs/installation-test.md.

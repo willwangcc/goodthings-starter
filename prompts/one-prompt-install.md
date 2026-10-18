@@ -3,6 +3,8 @@
 Install my private Good Things opportunity radar from:
 https://github.com/willwangcc/goodthings-starter
 
+Start in ordinary Chat. Check your actual GitHub, Vercel, and Scheduled Task capabilities; use Work only if available and needed for browser-only steps. Do not assume any permission or create duplicate resources.
+
 Please read skills/install-goodthings/SKILL.md from the public source repository and follow it step by step. Use the repository README, SETUP.md, AGENTS.md and schemas as source of truth.
 
 Create a new PRIVATE GitHub instance in my own account from the template (not a fork), personalize data/profile.json with what you reliably know about me, discover and verify the first set of real opportunities, and commit them to MY instance.

@@ -1,18 +1,31 @@
 ---
 name: install-goodthings
-description: Install a self-hosted private Good Things personal opportunity radar from the canonical GitHub template, including verification and honest reporting of manual steps.
+description: Chat-first, Work-optional installation of a private Good Things opportunity radar, with capability checks, consent, protected deployment and verified scheduled refresh.
 ---
 
 # Good Things Installer v0.2
 
 ## Goal
-A new user in ChatGPT can request "Install Good Things" with one message. The agent performs supported steps, pauses only for user-authorized connections and credentials, and NEVER claims an unattended one-click installation if prerequisites are missing.
+A new user in ordinary ChatGPT can request "Install Good Things" with one message. The agent performs supported steps, pauses for user-controlled authorization and credentials, and NEVER claims an unattended one-click installation if prerequisites are missing.
 
 ## Source of truth
 - Canonical source: https://github.com/willwangcc/goodthings-starter
 - Install per person into a NEW private repository created from the GitHub template.
 - Read README.md, SETUP.md, AGENTS.md, prompts/install.md and all schemas in the newly created instance.
 - Do not copy other people's private profiles, opportunity packs, tokens, or interactions into this instance.
+
+## Execution policy — Chat-first, Work-optional
+
+1. **Default to ordinary Chat.** Read this skill and use already authorized GitHub/Vercel/Task actions directly when those actions actually exist. Do not require a different ChatGPT mode as a prerequisite.
+2. **Inventory tools before promising actions:** public repo read, private repo read/write, template-repo creation, code execution/validation, Vercel configuration, Scheduled Task creation, and whether scheduled executions can use the same connected apps. Read permission is not write permission.
+3. **Use Work only when available and useful** for a website-UI step that the connected tools cannot perform (for example, GitHub template creation or Vercel import). If Work is unavailable, hand off exactly one UI action to the user, obtain confirmation, and continue the same installation in Chat.
+4. **Ask for explicit consent** before creating resources or a recurring task; never infer authorization from merely sharing a URL. Keep GitHub permissions scoped to the user's instance.
+5. **Make installation resumable:** inspect existing instance, deployment, data, and tasks before provisioning anything; avoid duplicate repositories, tasks, and feed writes. Never overwrite prior private data.
+6. **No hidden success claims:** if a tool cannot do a step, label it PENDING or BLOCKED, give the smallest viable next action, and continue after it is complete. A task created now does not establish future scheduled-run access.
+
+## Progress states
+
+Report evidence, not intentions: `REPO_READY` → `DATA_READY` → `APP_READY` → `FEEDBACK_READY` → `SCHEDULE_READY` → `COMPLETE`. Use `PENDING` or `BLOCKED` for missing capabilities, approvals, or checks. `COMPLETE` requires **an actual unattended scheduled run** to consume feedback and commit a validated subsequent feed, not merely a manual refresh.
 
 ## Stage 0 — Detect capabilities
 Check whether this ChatGPT environment has actual working GitHub read/write access, Vercel project-management capabilities, and Scheduled Task creation. Do not assume a connector is installed, authorized or writable just because the public repo can be read.
@@ -21,7 +34,7 @@ For each unavailable capability, tell the user the single next authorization or 
 
 ## Stage 1 — Claim a private instance
 1. Confirm the canonical repo is configured as GitHub Template. If not, use the owner's Template Settings to fix it (when authorized) or report this as a blocker; do not disguise a fork as a template.
-2. Create a new private repository under the user's own GitHub account using "Use this template".
+2. First check whether the user already owns a Good Things private instance. Reuse and resume it if present; otherwise, with permission, create one under the user's own GitHub account using "Use this template".
 3. Verify its visibility is private and record its owner/name. Do not mutate the canonical repo or another person's instance.
 4. If the tool cannot create from a template, offer the user this GitHub creation page after template is enabled:
    https://github.com/new?template_owner=willwangcc&template_name=goodthings-starter&visibility=private&name=my-goodthings
@@ -46,7 +59,7 @@ Avoid editing the sample fixture. Validate the feed. Confirm the commit and the 
    GOODTHINGS_SESSION_SECRET (random 32+ chars, e.g. openssl rand -hex 32)
    GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN.
 3. GITHUB_TOKEN must be a fine-grained token scoped only to this instance, with Contents read/write. Never print, commit, or persist it in chat.
-4. Require that the server login blocks unauthenticated visitors and feedback POSTs; recommend Vercel deployment protection or edge rate limiting on top of the built-in app password, especially for publicly reachable domains.
+4. Require that the built-in server login blocks unauthenticated visitors and feedback POSTs; verify logged-out GET / serves no personal cards and logged-out POST /api/feedback is denied. Recommend Vercel deployment protection or edge rate limiting on top of the built-in app password, especially for publicly reachable domains. A private GitHub repo does not make a public Vercel URL private.
 5. The app stays locked if app credentials are missing. Never remove this protection to make onboarding appear successful.
 6. Verify production URL, log in and render real cards on a phone-sized screen. The UI currently uses Nope/Want buttons; do not claim gesture swipes.
 
@@ -54,7 +67,7 @@ Avoid editing the sample fixture. Validate the feed. Confirm the commit and the 
 1. Show the user the recurring schedule and ask their preferred daily time if not already specified.
 2. Use prompts/scheduled-task.md with the user's exact private repo owner/name.
 3. Create/confirm a real ChatGPT Scheduled Task only if the current environment supports it. A pasted prompt or reminder is NOT proof a task is configured.
-4. Test one task run to confirm that repository write access works in the scheduled execution context. If a scheduled task cannot access/write the repo, report blocked and use an authorized fallback; no fake automation.
+4. Verify a real scheduled execution (not only a manual run) can read the prior interaction batch, validate/dedupe, and commit the next feed with the task's actual permissions. Until that run succeeds, report SCHEDULE_READY rather than COMPLETE. If the task cannot access/write the repo, report blocked and use an authorized fallback; no fake automation.
 
 ## Stage 6 — Full-loop acceptance
 Follow docs/installation-test.md:
@@ -68,10 +81,10 @@ Follow docs/installation-test.md:
 - actual Scheduled Task created, if supported
 
 ## Completion response
-Return: instance URL, deployed app URL, task schedule and task status, counts of valid real cards, interaction write-back confirmation, number of manual interventions, blockers and the next concrete action. Separate VERIFIED from NOT YET VERIFIED.
+Return: instance URL, protected app URL (only if verified), task schedule and task status, counts of valid real cards, interaction write-back confirmation, number of manual interventions, blockers and the next concrete action. For each acceptance check state PASS, PENDING or BLOCKED; distinguish verified actions from future checks.
 
 ## Non-goals
-- No public Plugin needed for v0.2.
+- No public Plugin or paid Work requirement for v0.2.
 - No claims of universal one-click provisioning.
 - No OAuth/Token automation unless a user-authorized tool actually supports it.
 - Do not update everyone else's previously installed instances automatically.
