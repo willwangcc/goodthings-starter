@@ -37,19 +37,26 @@ ChatGPT Scheduled Task
 - the Scheduled Task prompt + generation/evolution skills
 - a minimal mobile-first card app deployable to Vercel
 
-## Install
+## Install (Chat-first)
 
-1. Create a **private repository from this template**.
-2. Follow [`SETUP.md`](SETUP.md).
-3. Connect the repo to Vercel.
-4. Connect GitHub in ChatGPT.
-5. Paste [`prompts/install.md`](prompts/install.md) once.
-6. Create a recurring ChatGPT Scheduled Task using [`prompts/scheduled-task.md`](prompts/scheduled-task.md).
+**Start in ordinary ChatGPT**: share the source URL below and ask ChatGPT to install Good Things for you. Connected GitHub/Vercel tools can perform available steps; website-only steps may require ChatGPT Work (optional) or a short manual handoff.
+
+> Install Good Things for me from https://github.com/willwangcc/goodthings-starter. Read `skills/install-goodthings/SKILL.md` and follow the workflow. Create or reuse my **private** instance, then guide me through the remaining authorizations and verification steps.
+
+The ready-to-paste expanded instruction is in [`prompts/install.md`](prompts/install.md). The single canonical install procedure is [`skills/install-goodthings/SKILL.md`](skills/install-goodthings/SKILL.md).
+
+1. Create your own **private repository from this GitHub template**. If your ChatGPT session cannot create one, use GitHub's **Use this template** UI and share the new `OWNER/REPO`.
+2. Connect GitHub in ChatGPT with access to **only your private instance**; initialize the profile and generate verified opportunities.
+3. Deploy that private repo on Vercel, configure server-side GitHub credentials, and protect **production pages and the feedback API** before putting personal data online.
+4. Confirm a real swipe batch is committed to the private GitHub repo.
+5. Create a recurring Scheduled Task at a time you approve. Confirm that an **actual scheduled run** can read feedback and write a new deduplicated feed; mere task creation is not sufficient.
+
+See [`SETUP.md`](SETUP.md) for the operational steps. Do **not** paste tokens into ChatGPT or commit them to GitHub. A private GitHub repo does not automatically make its Vercel website private.
 
 The first successful install is not “the app opens.” It is this full loop:
 
 ```text
-profile → generated feed → Vercel cards → swipe → GitHub interaction → next refresh improves
+profile → generated feed → protected Vercel cards → swipe → GitHub interaction → next scheduled refresh
 ```
 
 ## Data layout
@@ -68,6 +75,7 @@ schemas/
   interaction.schema.json
 
 skills/
+  install-goodthings/SKILL.md
   generate-opportunities/SKILL.md
   evolve-profile/SKILL.md
 
