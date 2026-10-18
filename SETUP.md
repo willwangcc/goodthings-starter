@@ -1,6 +1,8 @@
 # Setup
 
-Goal: get one complete Good Things loop working for one person.
+Goal: get one complete, **private and verified** Good Things loop working for one person.
+
+**For users installing through ChatGPT:** begin with `prompts/install.md` and the canonical `skills/install-goodthings/SKILL.md`. Chat is the default; Work is optional for browser-only steps. This document is the operational reference, not a requirement to install developer tooling locally.
 
 ## 1. Personalize the repo
 
@@ -34,7 +36,7 @@ GITHUB_REPO=<repo name>
 GITHUB_TOKEN=<fine-grained token with Contents: Read and write for this repo>
 ```
 
-Protect the deployment with Vercel Authentication or another access layer appropriate for the user.
+Protect the **production pages and API routes**, including `POST /api/feedback`, with Vercel Authentication or another verified access layer. The feedback route currently has no application-level session authentication, so do not expose it anonymously. Verify unauthenticated requests cannot read cards or write feedback.
 
 ## 4. Test feedback write-back
 
@@ -48,9 +50,9 @@ A feed without write-back is a personalized feed, not yet a learning loop.
 
 ## 5. Install the ChatGPT task
 
-Connect GitHub in ChatGPT and run `prompts/install.md` once. Then create a recurring Scheduled Task using `prompts/scheduled-task.md`.
+Connect GitHub in ChatGPT and run `prompts/install.md` once; it bootstraps `skills/install-goodthings/SKILL.md`. Then, with the user's approval, create a recurring Scheduled Task using `prompts/scheduled-task.md`, naming the exact private `OWNER/REPO` in the task instructions.
 
-The task must have access to this repository and should write only validated JSON matching the schemas in `schemas/`.
+The task must have access to this repository and should write only validated JSON matching the schemas in `schemas/`. A manually run generation or a newly created task does not prove future unattended runs can write to GitHub. Verify a real scheduled run before declaring installation complete.
 
 ## 6. Done test
 
