@@ -13,15 +13,18 @@ const profileSchema = readJson("schemas/profile.schema.json");
 const feedSchema = readJson("schemas/feed.schema.json");
 const interactionSchema = readJson("schemas/interaction.schema.json");
 const installationReportSchema = readJson("schemas/installation-report.schema.json");
+const attentionHistorySchema = readJson("schemas/attention-history.schema.json");
 
 ajv.addSchema(opportunitySchema, "opportunity.schema.json");
 const validateProfile = ajv.compile(profileSchema);
 const validateFeed = ajv.compile(feedSchema);
 const validateInteraction = ajv.compile(interactionSchema);
 const validateInstallationReport = ajv.compile(installationReportSchema);
+const validateAttentionHistory = ajv.compile(attentionHistorySchema);
 
 const checks = [];
 checks.push(["data/profile.json", validateProfile, readJson("data/profile.json")]);
+checks.push(["data/attention-history.json", validateAttentionHistory, readJson("data/attention-history.json")]);
 checks.push(["examples/installation-report.example.json", validateInstallationReport, readJson("examples/installation-report.example.json")]);
 
 for (const name of fs.readdirSync(path.join(root, "data/opportunities")).filter((n) => n.endsWith(".json"))) {

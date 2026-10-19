@@ -5,7 +5,7 @@ This repo is a **personal Good Things instance**, not a generic opportunity data
 ## Golden loop
 
 ```text
-READ → LEARN → DISCOVER → VERIFY → NORMALIZE → DEDUPE → RANK → WRITE → FEEDBACK
+READ → LEARN → DISCOVER → VERIFY → NORMALIZE → DEDUPE → RANK → WRITE → ATTENTION → FEEDBACK
 ```
 
 ### READ
@@ -39,6 +39,14 @@ Rank for this person, not for generic prestige. A strong card answers:
 
 ### WRITE
 Write one dated `opportunity-feed.v1` file under `data/opportunities/`, then update `data/opportunity-index.json` and `data/profile.json` if warranted.
+
+### ATTENTION
+
+Discovery is not notification. Write the private feed first; then apply the separate [Attention Contract v1](docs/attention-contract.md). A card may stay in the library even if it is not worth interrupting the user for. The editorial north star is:
+
+> Knowing this person, is there a non-obvious reason they should act on this now?
+
+For a notification candidate, require verified sources, Fit >= 0.75, specific Why you / Why now, a 5–30-minute Next move, and grounded time-window evidence. No more than 3, zero is a valid answer. Use the deterministic selector in `lib/attention.mjs` and dedupe against the private `data/attention-history.json` ledger. Do not count selection as delivery, do not mark surfaced before actually surfacing, and do not claim native silent/conditional notifications without a real host test.
 
 ### FEEDBACK
 Treat swipe/detail/source behavior as evidence, not truth. Right-swipe is positive evidence; left-swipe is negative evidence; detail/source opens indicate uncertainty or interest but are weaker signals.

@@ -1,17 +1,30 @@
-Refresh this user's Good Things instance.
+# Good Things — daily discovery + attention task
 
-Read the repository contract first: `AGENTS.md`, then `data/profile.json`, `data/opportunity-index.json`, recent `data/interactions/*.json`, recent `data/opportunities/*.json`, `skills/evolve-profile/SKILL.md`, and `skills/generate-opportunities/SKILL.md`.
+Refresh THIS participant's private Good Things instance. Use the exact private owner/repo resolved at installation; never write personal data to the public starter.
 
-Then:
+Run at the daily local time explicitly confirmed during installation (suggest 09:00 in the participant's confirmed timezone; do not infer timezone from network location). Do not assume the task exists or that it has GitHub write access until verified.
 
-1. Evolve the profile only when new evidence warrants it.
-2. Discover current real opportunities using fresh public sources.
-3. Verify important facts from primary sources whenever possible.
-4. Normalize canonical URLs and dedupe against the full opportunity index before selecting.
-5. Rank for this user using profile + interaction evidence while preserving the configured exploration ratio.
-6. Generate approximately `profile.generation.target_count` opportunities.
-7. Validate all durable JSON against the schemas in `schemas/`.
-8. Write a new `data/opportunities/YYYY-MM-DD.json` feed and update `data/opportunity-index.json`; update `data/profile.json` only if evidence warrants it.
-9. Commit the changes to this repository with a concise refresh message.
+## A. Discover and persist (the full library)
 
-Do not notify the user merely because the task ran. The value is the refreshed feed. Surface an alert only when an opportunity is unusually time-sensitive or high-upside and waiting until the user's normal review would materially reduce its value.
+Read `AGENTS.md`, `docs/attention-contract.md`, `data/profile.json`, `data/opportunity-index.json`, `data/attention-history.json`, recent `data/interactions/*.json`, recent `data/opportunities/*.json`, `skills/evolve-profile/SKILL.md`, and `skills/generate-opportunities/SKILL.md`.
+
+1. Evolve the profile only when strong new evidence warrants a change. Prefer known ChatGPT context and observed feedback; do not invent personal facts or require a questionnaire.
+2. Discover current, genuinely actionable opportunities across relevant events/hackathons, funding/programs, collaboration/jobs, project-unblocking tools/APIs, research/open source, and asymmetric-upside experiments. Search broadly enough for exploration.
+3. Verify source, timing, eligibility and application path against primary sources where possible. Leave unknown values unknown.
+4. Canonicalize URLs and dedupe against the full index and prior feeds. Do not repeat the same opportunity edition.
+5. Rank for this person using profile and interactions. Produce **up to** `profile.generation.target_count` real cards (default 10), fewer or zero if evidence is weak; never pad.
+6. Validate feed JSON against the schemas, write a new immutable dated feed under `data/opportunities/`, update `data/opportunity-index.json`, and commit. Only update `data/profile.json` if evidence supports it.
+
+## B. Assess attention separately (0–3 alerts)
+
+**North star:** "Knowing this person, is there a non-obvious reason they should act on this now?"
+
+The persisted feed is NOT a notification list. For each potentially alert-worthy card, ground a temporary attention assessment in real evidence: `opportunity_id`, `actionable_now`, `why_interrupt`, `time_evidence`, `next_move_minutes`. State a 5–30-minute concrete next action; do not invent urgency.
+
+Where execution is supported, apply `lib/attention.mjs` via `scripts/attention-plan.mjs` to the committed feed, temporary assessments and private `data/attention-history.json`. The gate requires verified status, Fit >= 0.75, specific Why you + Why now + Next move, time-sensitive evidence, a 5–30-minute step, and no previously surfaced equivalent edition. It sorts by fit and returns **at most 3** alerts. If the deterministic gate cannot run, do not claim that it did or substitute unfiltered notifications.
+
+If zero qualify, **do not send a Good Things opportunity alert**. Do not fill an alert quota or produce generic news. The host platform may still emit a task-completion notification; never promise native silence unless verified.
+
+If 1–3 qualify and the host offers a supported notification channel, surface ONLY those concise cards with: title, one-line summary, Why you, Why now, Next move, Fit score and primary link. Once actually surfaced, record only surfaced keys via `recordSurfaced(...)` in `data/attention-history.json` and commit. **Selecting is not sending**; never record unsurfaced candidates. If conditional delivery is not supported or delivery cannot be verified, report that integration as PENDING/BLOCKED rather than falsely claiming push notifications.
+
+A real unattended scheduled run must prove it can read participant feedback, dedupe and write a valid feed. Task creation, manual execution or passing unit tests alone do not satisfy that acceptance criterion.

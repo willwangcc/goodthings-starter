@@ -16,6 +16,10 @@ The complete [installation guide](SETUP.md) and [installer skill](skills/install
 
 [Create a private Good Things instance](https://github.com/new?template_owner=willwangcc&template_name=goodthings-starter&visibility=private&name=my-goodthings) (works once the template owner enables GitHub Template repository).
 
+## Discovery vs. attention
+
+Every daily run maintains a private library of up to the configured target count (default 10 verified cards). This does **not** mean ten notifications: [Attention Contract v1](docs/attention-contract.md) selects at most three verified, time-relevant cards with Fit >= 75 and a concrete 5–30-minute next move, or zero. The selector has automated tests; native Scheduled Task conditional push/silence still requires a real participant-level verification. Never conflate a candidate shortlist with delivered push notifications.
+
 ## Personal runtime
 
 ~~~text
