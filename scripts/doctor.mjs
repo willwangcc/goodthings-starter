@@ -13,6 +13,7 @@ const required = [
   "lib/attention.mjs",
   "scripts/attention-plan.mjs",
   "data/attention-history.json",
+  "schemas/attention-history.schema.json",
   "skills/install-goodthings/SKILL.md",
   "docs/installation-test.md",
   "docs/installation-report.md",
