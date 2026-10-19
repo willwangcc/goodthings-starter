@@ -45,7 +45,7 @@ app/                             Protected mobile cards + login + feedback API
 lib/                             Server feed loader + authentication
 data/profile.json                Your editable user model (placeholder in template)
 data/opportunity-index.json       Canonical URL dedupe memory
-data/opportunities/               Dated real opportunity feeds
+data/opportunities/               Immutable timestamped opportunity feeds (legacy daily files supported)
 data/interactions/                Immutable interaction batches
 schemas/                         Versioned JSON contracts
 skills/install-goodthings/        Installer playbook
