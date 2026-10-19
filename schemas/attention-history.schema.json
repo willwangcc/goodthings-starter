@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "attention-history.schema.json",
+  "title": "Good Things surfaced-alert ledger v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "surfaced"],
+  "properties": {
+    "schema_version": { "const": "attention-history.v1" },
+    "surfaced": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "opportunity_id", "surfaced_at"],
+        "properties": {
+          "key": { "type": "string", "minLength": 1 },
+          "opportunity_id": { "type": "string", "minLength": 1 },
+          "surfaced_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
