@@ -64,10 +64,11 @@ Avoid editing the sample fixture. Validate the feed. Confirm the commit and the 
 6. Verify production URL, log in and render real cards on a phone-sized screen. The UI currently uses Nope/Want buttons; do not claim gesture swipes.
 
 ## Stage 5 — Schedule, with explicit user choice
-1. Show the user the recurring schedule and ask their preferred daily time if not already specified.
-2. Use prompts/scheduled-task.md with the user's exact private repo owner/name.
+1. Propose daily **09:00 in the participant's confirmed local timezone** by default, unless they already specified another time. Ask for the participant's choice/timezone only when genuinely unknown; do not infer timezone from IP.
+2. Use prompts/scheduled-task.md and docs/attention-contract.md with the user's exact private repo owner/name. Preserve separate discovery and attention contracts, including the private attention ledger.
 3. Create/confirm a real ChatGPT Scheduled Task only if the current environment supports it. A pasted prompt or reminder is NOT proof a task is configured.
 4. Verify a real scheduled execution (not only a manual run) can read the prior interaction batch, validate/dedupe, and commit the next feed with the task's actual permissions. Until that run succeeds, report SCHEDULE_READY rather than COMPLETE. If the task cannot access/write the repo, report blocked and use an authorized fallback; no fake automation.
+5. Validate the Attention Contract separately: zero candidates must result in no **Good Things** alert; up to three verified candidates may be surfaced. Platform-native conditional silence/push delivery must be tested in the participant's real scheduled environment. A passing deterministic unit test or task creation is not evidence of native notification control.
 
 ## Stage 6 — Full-loop acceptance
 Follow docs/installation-test.md:
