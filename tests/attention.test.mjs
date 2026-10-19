@@ -46,8 +46,9 @@ test("same edition is deduped across source aliases, history and reruns", () => 
   const a = card("a", 0.96, { title: "Same event", url: "https://example.org/event?utm_source=email" });
   const alias = card("alias", 0.91, { title: "Same event", url: "https://example.org/event" });
   const assessments = [assessment("a"), assessment("alias")];
-  const first = selectAttentionCandidates(feed([a, alias]), assessments);
+  const first = selectAttentionCandidates(feed([alias, a]), assessments);
   assert.equal(first.length, 1);
+  assert.equal(first[0].opportunity_id, "a", "prefer higher-fit alias, not first encountered");
   const history = recordSurfaced({ surfaced: [] }, first, "2026-10-19T02:00:00Z");
   assert.equal(history.surfaced.length, 1);
   assert.equal(selectAttentionCandidates(feed([a, alias]), assessments, history).length, 0);
@@ -63,6 +64,7 @@ test("candidate planning does not mark a notification as delivered", () => {
   const recorded = recordSurfaced(history, alerts, "2026-10-19T02:00:00Z");
   assert.equal(recorded.surfaced.length, 1);
   assert.equal(recordSurfaced(recorded, alerts, "2026-10-19T03:00:00Z").surfaced.length, 1);
+  assert.throws(() => recordSurfaced(recorded, alerts, "yesterday"), /UTC ISO/);
 });
 
 test("key generation refuses malformed URLs rather than inventing identity", () => {
