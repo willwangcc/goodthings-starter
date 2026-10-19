@@ -30,6 +30,8 @@ Purpose: test a NEW user's installation, not an existing participant's migrated 
 | T11 | Scheduled write permission | One real task run writes a fresh valid feed and updates index |
 | T12 | Learning loop | Next run consumes previous interaction, without converting one swipe into a stable fact |
 | T13 | Security hygiene | No private token / personal profile in public template or client bundle |
+| T14 | Attention gate | Actual daily feed remains separate from a 0–3 shortlist; 0.75 Fit minimum, actionable verified evidence, 5–30-minute next move, and no re-alert of already surfaced edition; test selector output and private ledger |
+| T15 | Native notification behavior | In this participant's real Scheduled Task environment, explicitly verify whether zero candidates means no platform push, and whether nonzero qualified candidates can trigger user-visible delivery; mark PENDING/BLOCKED if unsupported |
 
 For T09 do NOT revoke the owner's real personal token during a live production session; perform the outage experiment in an isolated test instance, or simulate API failure under test.
 
@@ -39,6 +41,7 @@ For T09 do NOT revoke the owner's real personal token during a live production s
 - An autonomous Scheduled Task that can READ and WRITE the private repository must be verified, not presumed.
 - Built-in password protection is fail-closed but has no globally coordinated rate limiting; enable provider-side protection for internet-facing apps.
 - New instances do not automatically inherit later template updates.
+- Pure attention tests cannot establish a platform-native silent/no-push guarantee; test this separately with the participant's actual Scheduled Task.
 
 ## Failure log and review
 Capture each failure as (stage, observed error, evidence strength, user intervention, minutes lost if measured, proposed smallest fix, known public Issue URL). Use `schemas/installation-report.schema.json` for an optional private report and `prompts/post-install-review.md` to review the installation. See `docs/installation-report.md`.
