@@ -109,6 +109,9 @@ test("server reads latest GitHub blobs with a token and rejects truncated histor
     await assert.rejects(() => loadHistory(USER), /incomplete/);
   } finally {
     globalThis.fetch = savedFetch;
-    [process.env.GITHUB_OWNER, process.env.GITHUB_REPO, process.env.GITHUB_TOKEN] = prior;
+    ["GITHUB_OWNER", "GITHUB_REPO", "GITHUB_TOKEN"].forEach((key, index) => {
+      if (prior[index] === undefined) delete process.env[key];
+      else process.env[key] = prior[index];
+    });
   }
 });
