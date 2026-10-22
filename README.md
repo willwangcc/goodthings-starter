@@ -45,7 +45,7 @@ app/                             Protected mobile cards + login + feedback API
 lib/                             Server feed loader + authentication
 data/profile.json                Your editable user model (placeholder in template)
 data/opportunity-index.json       Canonical URL dedupe memory
-data/opportunities/               Dated real opportunity feeds
+data/opportunities/               Immutable timestamped opportunity feeds (legacy daily files supported)
 data/interactions/                Immutable interaction batches
 schemas/                         Versioned JSON contracts
 skills/install-goodthings/        Installer playbook
@@ -56,6 +56,16 @@ prompts/install.md                Initial data generation
 prompts/scheduled-task.md         Recurring task payload
 docs/installation-test.md         Clean-room acceptance checklist
 ~~~
+
+## Personal opportunity history
+
+After login, open **历史 / History** from either the live deck or its completion screen. The protected `/history` page reads **all retained private feed snapshots** and interaction batches, deduplicates the same underlying opportunity, and supports kind, Want/Pass/no-record and keyword/topic filters. History is a read-only library; it does not generate new swipe decisions.
+
+For deployed instances, History reads the owner's PRIVATE GitHub repository through the existing server-side `GITHUB_OWNER`, `GITHUB_REPO`, and `GITHUB_TOKEN` environment variables (Contents read permission). Reads use `no-store` so newly committed feedback is visible without a Vercel redeploy. If GitHub access fails or the result is incomplete, the app shows an explicit error rather than pretending to show all history. Local development without GitHub settings reads checked-in files.
+
+Every future refresh should create a **new UTC-timestamped file** at `data/opportunities/YYYY-MM-DDTHH-mm-ssZ.json`; the loader remains backward-compatible with legacy `YYYY-MM-DD.json`. Previously overwritten files cannot be reconstructed by this feature. Decision labels reflect only *persisted* feedback, so an opportunity without a recorded left/right action shows **无决策记录** rather than a claim that the user never viewed it. Last-pushed opportunity statuses are snapshots, not live web availability.
+
+Changes in this template **do not propagate automatically to previously created private instances**. Existing participants must explicitly pull/migrate the feature and redeploy their own instance; preserve their private profile, feeds and interaction history during any upgrade.
 
 ## Improve the installer after every install
 

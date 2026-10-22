@@ -49,7 +49,7 @@ For each unavailable capability, tell the user the single next authorization or 
 ## Stage 3 — Produce first REAL feed
 Run prompts/install.md together with skills/generate-opportunities/SKILL.md.
 Verify high-signal opportunities against real sources. Deduplicate against data/opportunity-index.json; leave unknown facts unknown; respect generation.target_count.
-Write exactly one valid dated data/opportunities/YYYY-MM-DD.json plus updated index.
+Write exactly one valid dated data/opportunities/YYYY-MM-DDTHH-mm-ssZ.json (unique UTC timestamp; no overwrite) plus updated index.
 Avoid editing the sample fixture. Validate the feed. Confirm the commit and the new file exists.
 
 ## Stage 4 — Deploy and protect

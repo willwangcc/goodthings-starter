@@ -20,7 +20,7 @@ Generate a small, verified, deduplicated set of opportunities that this specific
 6. Dedupe against `data/opportunity-index.json`.
 7. Score each candidate 0–1 for this person. Do not use fake precision: the score is ranking metadata, not scientific truth.
 8. Select roughly `profile.generation.target_count` opportunities with a mix of exploitation + exploration.
-9. Write an `opportunity-feed.v1` file to `data/opportunities/YYYY-MM-DD.json`.
+9. Write an `opportunity-feed.v1` file to `data/opportunities/YYYY-MM-DDTHH-mm-ssZ.json` (UTC timestamp; preserve all old snapshots).
 10. Update the dedupe index for every selected opportunity.
 
 ## Quality bar

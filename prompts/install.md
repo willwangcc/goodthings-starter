@@ -8,7 +8,7 @@ You are installing Good Things for the owner of this private repository.
 4. Preserve unknown values as null/unknown/empty arrays.
 5. Validate the profile against `schemas/profile.schema.json`.
 6. Run one initial opportunity generation using `skills/generate-opportunities/SKILL.md`.
-7. Write the first dated feed to `data/opportunities/YYYY-MM-DD.json` and update `data/opportunity-index.json`.
+7. Write the first dated feed to `data/opportunities/YYYY-MM-DDTHH-mm-ssZ.json` (UTC; never overwrite an existing feed) and update `data/opportunity-index.json`.
 8. Do not modify app presentation unless required to render valid schema data.
 
 This prompt completes the **initial data bootstrap** when the private repository contains a grounded profile and a validated first feed. Do not claim the full installation is complete until `skills/install-goodthings/SKILL.md` and `docs/installation-test.md` have verified a protected app, feedback write-back, and an actual scheduled refresh.

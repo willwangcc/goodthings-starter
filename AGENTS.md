@@ -38,7 +38,7 @@ Rank for this person, not for generic prestige. A strong card answers:
 - What is the next action?
 
 ### WRITE
-Write one dated `opportunity-feed.v1` file under `data/opportunities/`, then update `data/opportunity-index.json` and `data/profile.json` if warranted.
+Write one immutable UTC timestamped `opportunity-feed.v1` file under `data/opportunities/YYYY-MM-DDTHH-mm-ssZ.json` (keep prior daily `YYYY-MM-DD.json` files for compatibility), then update `data/opportunity-index.json` and `data/profile.json` if warranted.
 
 ### FEEDBACK
 Treat swipe/detail/source behavior as evidence, not truth. Right-swipe is positive evidence; left-swipe is negative evidence; detail/source opens indicate uncertainty or interest but are weaker signals.

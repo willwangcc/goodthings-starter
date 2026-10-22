@@ -20,7 +20,7 @@ Do not fork; do not copy user data from an existing instance.
 
 ### B. Initial profile and data
 Edit data/profile.json using the user's real goals/constraints. Leave unknown fields empty/unknown.
-Use prompts/install.md to generate one real dated feed under data/opportunities/YYYY-MM-DD.json and update data/opportunity-index.json.
+Use prompts/install.md to generate one real dated feed under data/opportunities/YYYY-MM-DDTHH-mm-ssZ.json (UTC; do not overwrite old feeds) and update data/opportunity-index.json.
 The example JSON is not a real opportunity and is deliberately excluded from the live feed.
 
 ### C. Local smoke test

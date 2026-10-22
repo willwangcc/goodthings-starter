@@ -22,3 +22,52 @@ h1 { font-size: clamp(32px, 9vw, 48px); line-height: .98; letter-spacing: -.045e
 .yes { background: #111; color: #fff; }
 .done { margin: auto 0; }
 .done p { color: #666; font-size: 18px; }
+
+/* Personal history: quiet library navigation, never another swipe surface. */
+.feed-header-end { display: flex; align-items: center; gap: 14px; }
+.history-nav, .history-back { color: #343434; font-size: 13px; font-weight: 750; text-decoration: none; background: #e7e3da; border-radius: 999px; padding: 10px 14px; white-space: nowrap; }
+.history-nav:focus-visible, .history-back:focus-visible, .history-tabs button:focus-visible,
+.history-item-toggle:focus-visible { outline: 3px solid #986947; outline-offset: 3px; }
+.history-shell { max-width: 680px; }
+.history-topbar { margin-bottom: 30px; }
+.history-intro { margin-bottom: 28px; }
+.history-intro h1 { margin: 12px 0 8px; letter-spacing: -.04em; }
+.history-intro p { margin: 0 0 18px; color: #67635d; line-height: 1.5; }
+.history-eyebrow { letter-spacing: .15em; font-size: 11px; font-weight: 800; color: #71665a; }
+.history-count { color: #666; font-size: 14px; }
+.history-count strong { color: #111; font-size: 23px; }
+.history-count span { color: #827d75; }
+.history-filters { display: grid; gap: 14px; }
+.history-tabs { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 4px; }
+.history-tabs button { border: 1px solid #d8d3c9; background: transparent; border-radius: 99px; padding: 10px 12px; white-space: nowrap; color: #605e59; cursor: pointer; font-size: 13px; font-weight: 750; }
+.history-tabs button.active { background: #151515; border-color: #151515; color: white; }
+.history-inputs { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(150px, 2fr); gap: 10px; }
+.history-inputs label { display: grid; gap: 6px; font-size: 11px; font-weight: 700; color: #6b6862; }
+.history-inputs select, .history-inputs input { width: 100%; min-width: 0; min-height: 43px; border-radius: 12px; border: 1px solid #d8d3c9; background: #fff; color: #1b1b1b; padding: 0 12px; font-size: 14px; }
+.history-list { margin-top: 30px; display: grid; gap: 10px; }
+.history-list-heading { display: flex; align-items: baseline; justify-content: space-between; color: #76716b; font-size: 12px; }
+.history-list-heading h2 { font-size: 17px; color: #202020; margin: 0 0 6px; }
+.history-item { background: #fff; border: 1px solid rgba(0,0,0,.07); border-radius: 18px; overflow: hidden; }
+.history-item-toggle { width: 100%; text-align: left; border: 0; background: none; color: inherit; cursor: pointer; display: flex; justify-content: space-between; gap: 14px; padding: 18px; }
+.history-item-copy { min-width: 0; display: grid; gap: 7px; }
+.history-item-copy strong { font-size: 18px; line-height: 1.25; }
+.history-item-meta { font-size: 11px; font-weight: 800; color: #847867; }
+.history-item-summary { color: #666; font-size: 13px; line-height: 1.45; }
+.history-item-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: #8b8780; font-size: 11px; }
+.history-decision { border-radius: 999px; padding: 4px 8px; background: #f0eee9; color: #62615e; font-weight: 700; }
+.history-decision-want { background: #e3efe5; color: #285e3e; }
+.history-decision-pass { background: #f4e7e2; color: #854e3a; }
+.history-chevron { font-size: 22px; color: #7e7a72; }
+.history-item-detail { border-top: 1px solid #eeeae3; padding: 4px 18px 18px; font-size: 13px; line-height: 1.55; }
+.history-item-detail p { margin: 12px 0; }
+.history-item-detail b { margin-right: 4px; }
+.history-topics { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 14px; }
+.history-topics span { border-radius: 99px; background: #f4f2ed; color: #5c564e; padding: 4px 9px; font-size: 11px; }
+.history-provenance { color: #7c766e; font-size: 12px; }
+.history-source, .history-loadmore, .history-error a { display: inline-block; padding: 10px 15px; border-radius: 12px; background: #171717; color: #fff; font-size: 13px; font-weight: 750; text-decoration: none; }
+.history-loadmore { width: 100%; min-height: 48px; cursor: pointer; border: 0; margin-top: 12px; }
+.history-empty { padding: 32px 18px; background: #fff; color: #666; border-radius: 18px; line-height: 1.5; }
+.history-note { margin: 28px 0 5px; font-size: 12px; color: #777; line-height: 1.5; }
+.history-error { margin: auto 0; }
+.history-error h1 { font-size: 36px; }
+.history-error p { line-height: 1.6; color: #666; }
